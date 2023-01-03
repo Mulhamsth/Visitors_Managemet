@@ -81,6 +81,7 @@
 	public List<visitor> VisitorList{ get; set; }
 	protected override void OnInitialized()
 	{
+		visitorsservice.CreationTime = DateTime.Now;
 		visitor = new visitor();
 		visitor.birth_day = new DateOnly(2022, 1, 1);
 		VisitorList = visitorsservice.GetVisitors();
