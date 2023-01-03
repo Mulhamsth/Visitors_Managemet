@@ -2,8 +2,20 @@
 {
 	public class VisitorsService : IVisitorsService
 	{
+		
 		public DateTime CreationTime { get; set; }
 		public List<visitor> Visitors { get ; set; }
+
+		public VisitorsService()
+		{
+			Visitors = new List<visitor>();
+			Visitors.Add(new visitor(1, "James", "Smith", "NÖ", DateOnly.Parse("1.1.1998"), "test@fake.com", "0123456789"));
+			Visitors.Add(new visitor(1, "Robert", "Johnson", "NÖ", DateOnly.Parse("1.1.2000"), "test@fake.com", "0123456789"));
+			Visitors.Add(new visitor(1, "John", "Williams", "NÖ", DateOnly.Parse("1.1.1999"), "test@fake.com", "0123456789"));
+			Visitors.Add(new visitor(1, "Michael", "Brown", "NÖ", DateOnly.Parse("1.1.2005"), "test@fake.com", "0123456789"));
+			Visitors.Add(new visitor(1, "David", "Jones", "NÖ", DateOnly.Parse("1.1.1984"), "test@fake.com", "0123456789"));
+			Visitors.Add(new visitor(1, "William", "Miller", "NÖ", DateOnly.Parse("1.1.1989"), "test@fake.com", "0123456789"));
+		}
 
 		public DateTime GetCreatedDate()
 		{
