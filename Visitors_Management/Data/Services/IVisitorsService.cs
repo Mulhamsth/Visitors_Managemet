@@ -5,6 +5,7 @@
 		public DateTime CreationTime { get; set; }
 		public List<visitor> Visitors { get; set; }
 		public List<visitor> GetVisitors();
+		public void SaveVisitor(visitor v);
 		public visitor GetVisitorById(int visitorid);
 		public DateTime GetCreatedDate();
 		public string GetVersion();
