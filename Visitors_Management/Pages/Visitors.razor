@@ -1,45 +1,51 @@
-﻿@page "/visitors"
-@inject IVisitorsService visitorsservice
+﻿@page "/Addvisitors"
+@inject IVisitorsService visitorsservice;
+@inject IJSRuntime JsRuntime;
 
-<h3>Visitors</h3>
-<div class="col-12">
-	<EditForm Model="@visitor" OnValidSubmit="@SaveVisitor">
-		<DataAnnotationsValidator />
-		<div class="col-12 row">
+<div class="col-9">
+	<div class="col-9">
+		<h3><b>Enter the Visitor Information</b></h3>
+		<hr />
+		<div id="divServerValidations" class="alert alert-secondary mt-4"></div>
+	</div>
+	<EditForm Model="@visitor" OnValidSubmit="@SaveVisitor" OnInvalidSubmit="@NotSavedVisitor">
+		@*<DataAnnotationsValidator />*@
+
+		<div class="col-9 row">
 			<label class="col-2 font-weight-bold">First Name:</label>
-			<InputText class="form-control col-3" @bind-Value="@visitor.first_name" placeholder="Firstname"></InputText>
+			<Input @ref="firstnameText" class="form-control col-3" @bind="@visitor.first_name" placeholder="Firstname"></Input>
 			<ValidationMessage For="@(() => visitor.first_name)" />
 		</div>
 		<br />
-		<div class="col-12 row">
+		<div class="col-9 row">
 			<label class="col-2 font-weight-bold">Last Name:</label>
 			<InputText class="form-control col-3" @bind-Value="@visitor.last_name" placeholder="Lastname"></InputText>
 			<ValidationMessage For="@(() => visitor.last_name)" />
 		</div>
 		<br />
-		<div class="col-12 row">
+		<div class="col-9 row">
 			<label class="col-2 font-weight-bold">City:</label>
 			<InputText class="form-control col-3" @bind-Value="@visitor.city" placeholder="City"></InputText>
 			<ValidationMessage For="@(() => visitor.city)" />
 		</div>
 		<br />
-		<div class="col-12 row">
+		<div class="col-9 row">
 			<label class="col-2 font-weight-bold">Birth Day:</label>
 			<InputDate class="form-control col-3" format-value="yyyy-MM-dd" @bind-Value="@visitor.birth_day"></InputDate>
 		</div>
 		<br />
-		<div class="col-12 row">
+		<div class="col-9 row">
 			<label class="col-2 font-weight-bold">Email:</label>
 			<InputText class="form-control col-3" @bind-Value="@visitor.email" placeholder="Email"></InputText>
 			<ValidationMessage For="@(() => visitor.email)" />
 		</div>
-		<div class="col-12 row">
+		<div class="col-9 row">
 			<label class="col-2 font-weight-bold">Phone Number:</label>
-			<InputNumber class="form-control col-3" @bind-Value="@visitor.phone_number" placeholder="Phone Number"></InputNumber>
+			<InputText class="form-control col-3" @bind-Value="@visitor.phone_number" placeholder="Phone Number"></InputText>
 		</div>
 		<br />
 		<ValidationSummary />
-		<div class="col-12 row">
+		<div class="col-9 row">
 			<span class="col-2"></span>
 			<input type="submit" class="form-control col-1 btn btn-primary" value="Save" />
 			<span>&nbsp;</span>
@@ -48,48 +54,26 @@
 	</EditForm>
 </div>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<td>VisitorId</td>
-			<td>First Name</td>
-			<td>Last Name</td>
-			<td>City</td>
-			<td>Birth Day</td>
-			<td>Email</td>
-			<td>Phone Number</td>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (visitor v in VisitorList)
-		{
-			<tr>
-				<td>@v.VisitorId</td>
-				<td>@v.first_name</td>
-				<td>@v.last_name</td>
-				<td>@v.city</td>
-				<td>@v.birth_day</td>
-				<td>@v.email</td>
-				<td>@v.phone_number</td>
-			</tr>
-		}
-	</tbody>
-</table>
-
 @code {
 	public visitor visitor { get; set; }
-	public List<visitor> VisitorList{ get; set; }
+	ElementReference firstnameText;
+
 	protected override void OnInitialized()
 	{
 		visitorsservice.CreationTime = DateTime.Now;
 		visitor = new visitor();
 		visitor.birth_day = new DateOnly(2022, 1, 1);
-		VisitorList = visitorsservice.GetVisitors();
 	}
-	private void SaveVisitor()
+	private async Task SaveVisitor()
 	{
 		visitorsservice.SaveVisitor(visitor);
+		await JsRuntime.InvokeVoidAsync("OnSave", visitor.first_name, visitor.last_name, true);
+		await JsRuntime.InvokeVoidAsync("setFocusOnElement", firstnameText);
 		visitor = new visitor();
 	}
-	
+	private async Task NotSavedVisitor()
+	{
+		await JsRuntime.InvokeVoidAsync("OnSave", visitor.first_name, visitor.last_name, false);
+	}
+
 }

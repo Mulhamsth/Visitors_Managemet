@@ -16,7 +16,7 @@ namespace Visitors_Management.Data
 
 		[DataType(DataType.EmailAddress, ErrorMessage = "Invalid Email Address")]
 		public string email { get; set; }
-		[DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
-		public int phone_number { get; set; }
+		[MinLength(12, ErrorMessage = "Phone Number is short")]
+		public string phone_number { get; set; }
 	}
 }

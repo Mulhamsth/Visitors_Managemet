@@ -9,7 +9,7 @@ namespace Visitors_Management.Data
 
 
 		public visitor() { }
-		public visitor(int VisitorId, string first_name, string last_name, string city, DateOnly birth_day, string email, int phone_number) 
+		public visitor(int VisitorId, string first_name, string last_name, string city, DateOnly birth_day, string email, string phone_number) 
 		{ 
 			this.VisitorId = VisitorId;
 			this.first_name = first_name;

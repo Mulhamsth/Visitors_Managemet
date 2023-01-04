@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5wNUIiX1Ere7c63j0nPD7D4YCPZFrPN/07PlFoZw4DY=",
+  "Hash": "5dlP3tM24l8hsJ/D7n7dPjByAxD9ZQBvyN5c08tJPj8=",
   "Source": "Visitors_Management",
   "BasePath": "_content/Visitors_Management",
   "Mode": "Default",
@@ -270,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Mulhamsth\\github\\Visitors_Management\\Visitors_Management\\wwwroot\\JS\\save.js",
+      "SourceId": "Visitors_Management",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mulhamsth\\github\\Visitors_Management\\Visitors_Management\\wwwroot\\",
+      "BasePath": "_content/Visitors_Management",
+      "RelativePath": "JS/save.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\JS\\save.js"
     }
   ]
 }

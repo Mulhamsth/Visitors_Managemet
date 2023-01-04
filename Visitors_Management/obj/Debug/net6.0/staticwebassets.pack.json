@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Visitors_Management.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Mulhamsth\\github\\Visitors_Management\\Visitors_Management\\wwwroot\\JS\\save.js",
+      "PackagePath": "staticwebassets\\JS\\save.js"
+    },
+    {
       "Id": "C:\\Users\\Mulhamsth\\github\\Visitors_Management\\Visitors_Management\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },

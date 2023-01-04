@@ -1,0 +1,43 @@
+﻿@page "/visitors"
+@inject IVisitorsService visitorsservice;
+
+<div class="col-10">
+	<h3>Visitors</h3>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>VisitorId</td>
+				<td>First Name</td>
+				<td>Last Name</td>
+				<td>City</td>
+				<td>Birth Day</td>
+				<td>Email</td>
+				<td>Phone Number</td>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (visitor v in VisitorList)
+			{
+					<tr>
+						
+						<td>
+						<a href="/visitors/visitordetails/@v.VisitorId">@v.VisitorId</a>
+						</td>
+						<td>@v.first_name</td>
+						<td>@v.last_name</td>
+						<td>@v.city</td>
+						<td>@v.birth_day</td>
+						<td>@v.email</td>
+						<td>@v.phone_number</td>
+					</tr>
+			}
+		</tbody>
+	</table>
+</div>
+@code {
+	public List<visitor> VisitorList { get; set; }
+	protected override void OnInitialized()
+	{
+		VisitorList = visitorsservice.GetVisitors();
+	}
+}
